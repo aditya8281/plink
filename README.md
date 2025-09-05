@@ -17,57 +17,74 @@ plink is a secure, efficient peer-to-peer file transfer tool that enables direct
 plink/
 ├── README.md
 ├── requirements.txt
-├── setup.py
+├── main.py
 ├── .gitignore
 ├── docs/
-│   ├── API.md
-│   ├── ARCHITECTURE.md
-│   └── EXAMPLES.md
 ├── backend/
-│   ├── __init__.py
+│   ├── init.py
 │   ├── networking/
-│   │   ├── __init__.py
-│   │   ├── core/
-│   │   │   ├── __init__.py
-│   │   │   ├── connection_manager.py
-│   │   │   ├── peer_discovery.py
+│   │   ├── init.py
+│   │   ├── analyze_network.py
 │   │   ├── strategies/
-│   │   │   ├── __init__.py
+│   │   │   ├── init.py
 │   │   │   ├── direct_connection.py
-│   │   │   ├── upnp_connection.py
-│   │   │   ├── hole_punching.py
-│   │   │   └── role_reversal.py
+│   │   │   ├── FC_to_FC.py
+│   │   │   ├── FC_to_PRC.py
+│   │   │   ├── FC_to_RC.py
+│   │   │   ├── FC_to_SYM.py
+│   │   │   ├── PRC_to_PRC.py
+│   │   │   ├── RC_to_PRC.py
+│   │   │   ├── RC_to_RC.py
+│   │   │   └── RC_to_SYM.py
 │   │   └── utils/
-│   │       ├── __init__.py
+│   │       ├── init.py
 │   │       ├── network_utils.py
-│   │       └── port_scanner.py
+│   │       └── port_scanning.py
 │   └── cryptography/
-│       ├── __init__.py
+│       ├── init.py
 │       ├── core/
-│       │   ├── __init__.py
-│       │   ├── encryption.py
-│       │   ├── key_exchange.py
-│       │   └── hash_verification.py
+│       │   ├── init.py
+│       │   └── cipher.py
 │       ├── data/
-│       │   ├── __init__.py
-│       │   ├── chunk_manager.py
-│       │   ├── metadata.py
-│       │   └── compression.py
+│       │   ├── init.py
+│       │   ├── receiver/
+│       │   │    ├── init.py
+│       │   │    ├── chunk_manager.py
+│       │   │    ├── compression.py
+│       │   │    └── metadata.py
+│       │   └── sender/
+│       │        ├── init.py
+│       │        ├── chunk_manager.py
+│       │        ├── compression.py
+│       │        └── metadata.py
 │       └── utils/
-│           ├── __init__.py
-│           ├── crypto_utils.py
-│           └── random_generator.py
+│           └── key_generation.py
 ├── frontend/
-    ├── __init__.py
-    ├── cli/
-    │   ├── __init__.py
-    │   ├── argument_parser.py
-    │   ├── command_handler.py
-    │   └── output_formatter.py
-    │
-    └── config/
-        ├── __init__.py
-        ├── settings.py
+├── init.py
+├── cli/
+│   ├── init.py
+│   ├── main.py
+│   ├── receiver/
+│   │    └── argument_parser.py
+│   └── sender/
+│        └── argument_parser.py
+└── test/
+└── argument_parser.py
+├── utils/
+├── init.py
+├── link.py
+├── logging.py
+└── plink_file.py
+└── test/
+├── backend/
+│   └── cryptography/
+│       └── data/
+│           ├── test_chunk_manager.py
+│           ├── test_compression.py
+│           └── test_metadata.py
+└── frontend/
+└── argument_parser.py
+
 ```
 
 ### Prerequisites
