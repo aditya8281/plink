@@ -98,29 +98,17 @@ plink/
 
 **Sender:**
 ```bash
-plink send /path/to/file.txt
+plink send /path/to/file
 ```
 
 **Receiver:**
 ```bash
-plink receive
-```
-
-### Advanced Usage
-
-**Send with specific connection method:**
-```bash
-plink send /path/to/file.txt --method upnp --port 8080
-```
-
-**Receive with custom settings:**
-```bash
-plink receive --output-dir /downloads --method hole-punch
+plink receive /path/to/store
 ```
 
 ## Command Line Interface
 
-### Sender Commands
+### Sender Commands / WIP
 
 ```bash
 plink send <file_path> [OPTIONS]
@@ -134,7 +122,7 @@ OPTIONS:
   --resume             Resume interrupted transfer
 ```
 
-### Receiver Commands
+### Receiver Commands / WIP
 
 ```bash
 plink receive [OPTIONS]
