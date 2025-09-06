@@ -11,6 +11,9 @@ Outputs:
 """
 from utils.logging import log, LogType
 from pathlib import Path
+import time
+
+CHUNK_SEND_DELAY = 0.05  # 50ms delay between chunks to prevent overwhelming
 
 def yield_chunks(path, CHUNK_SIZE, general_logfile_path, offset=0) :
     p = Path(path)
@@ -27,6 +30,7 @@ def yield_chunks(path, CHUNK_SIZE, general_logfile_path, offset=0) :
                     yield (chunk_num, chunk_data)
                 chunk_num += 1
                 log(f"Yielded chunk {chunk_num} of size {len(chunk_data)} bytes", log_type=LogType.INFO, status="Success", general_logfile_path=general_logfile_path)
+                time.sleep(CHUNK_SEND_DELAY)  # Add delay between chunks
     else:
         log(f"Path {path} is not a valid file", log_type=LogType.ERROR, status="Failure", general_logfile_path=general_logfile_path)
         raise ValueError("Path must be a file")

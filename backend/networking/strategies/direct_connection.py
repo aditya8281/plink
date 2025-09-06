@@ -12,6 +12,11 @@ from backend.cryptography.data.receiver.compression import decompress_final_chun
 from backend.cryptography.data.sender.metadata import retrieve_metadata as retrieve_sender_metadata
 from backend.cryptography.core.cipher import encryption, decryption
 
+# Add/modify these timeout constants at the top of the file
+CONNECTION_TIMEOUT = 60  # 60 seconds for initial connection
+TRANSFER_TIMEOUT = 300  # 5 minutes for file transfer
+CHUNK_TIMEOUT = 30      # 30 seconds for individual chunk transfers
+
 class DirectConnection:
 
     def __init__(self, self_info, peer_info, self_private_key, peer_public_key, log_path):
