@@ -16,6 +16,9 @@ from backend.cryptography.core.cipher import encryption, decryption
 CONNECTION_TIMEOUT = 60  # 60 seconds for initial connection
 TRANSFER_TIMEOUT = 300  # 5 minutes for file transfer
 CHUNK_TIMEOUT = 30      # 30 seconds for individual chunk transfers
+METADATA_TIMEOUT = 300  # 5 minutes
+CHUNK_TIMEOUT = 120    # 2 minutes
+CONNECT_TIMEOUT = 180  # 3 minutes
 
 class DirectConnection:
 

@@ -40,19 +40,29 @@ def choose_strategy(self_info, peer_info, self_private_key, peer_public_key, log
     peer_nat = peer_info.get('nat_type', 'Unknown')
     self_external_ip = self_info.get('external_ip', '')
     peer_external_ip = peer_info.get('external_ip', '')
+    self_internal_ip = self_info.get('internal_ip', '')
+    peer_internal_ip = peer_info.get('internal_ip', '')
 
     print(f"\nNetwork Analysis:")
     print(f"    Your NAT type: {self_nat}")
     print(f"    Peer's NAT type: {peer_nat}")
     print(f"    Your external IP: {self_external_ip}")
     print(f"    Peer's external IP: {peer_external_ip}")
+    print(f"    Your internal IP: {self_internal_ip}")
+    print(f"    Peer's internal IP: {peer_internal_ip}")
 
-    # Strategy 1: Same network detection (highest priority)
-    if self_external_ip == peer_external_ip and self_external_ip:
+    # Check if on same network (either by external IP or subnet match)
+    same_network = (
+        self_external_ip == peer_external_ip or
+        (self_internal_ip and peer_internal_ip and 
+         self_internal_ip.split('.')[0:3] == peer_internal_ip.split('.')[0:3])
+    )
+
+    if same_network:
         print("Strategy: Direct Connection (Same Network)")
         log("Using DirectConnection strategy - same network", LogType.INFO, "Success", log_path)
         return DirectConnection(self_info, peer_info, self_private_key, peer_public_key, log_path)
-
+    
     def get_nat_category(nat_string):
         if 'Full Cone' in nat_string or 'Open Internet' in nat_string:
             return 'fc'
